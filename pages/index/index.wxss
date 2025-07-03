@@ -211,11 +211,6 @@
   height: 400rpx;
 }
 
-/* 两张图片时的样式 */
-.content-images:has(.content-image:nth-child(2):last-child) .content-image {
-  width: calc(50% - 5rpx);
-}
-
 /* 车辆信息 */
 .car-info {
   display: flex;
@@ -297,11 +292,6 @@
   .content-image {
     width: 160rpx;
     height: 160rpx;
-  }
-  
-  .content-images:has(.content-image:nth-child(2):last-child) .content-image {
-    width: calc(50% - 5rpx);
-    height: 200rpx;
   }
 }
 

@@ -3,7 +3,6 @@
     "pages/index/index",
     "pages/my/my",
     "pages/share/share",
-    "pages/detail/detail",
     "pages/login/login"
   ],
   "window": {
