@@ -1,0 +1,105 @@
+<!--pages/index/index.wxml-->
+<view class="page-container">
+  <!-- 搜索框 -->
+  <view class="search-container">
+    <view class="search-box">
+      <icon class="search-icon" type="search" size="16"></icon>
+      <input class="search-input" placeholder="搜索爱车分享..." bindinput="onSearchInput" value="{{searchValue}}" />
+    </view>
+  </view>
+
+  <!-- 轮播图 -->
+  <view class="banner-container">
+    <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}" duration="{{1000}}">
+      <block wx:for="{{banners}}" wx:key="id">
+        <swiper-item>
+          <image class="banner-image" src="{{item.image}}" mode="aspectFill" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 分类导航 -->
+  <view class="category-container">
+    <view class="category-title">热门分类</view>
+    <view class="category-list">
+      <block wx:for="{{categories}}" wx:key="id">
+        <view class="category-item" bindtap="onCategoryTap" data-category="{{item.name}}">
+          <view class="category-icon">{{item.icon}}</view>
+          <view class="category-name">{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 分享内容列表 -->
+  <view class="content-container">
+    <view class="content-header">
+      <view class="content-title">最新分享</view>
+      <view class="content-filter">
+        <view class="filter-item {{currentFilter === 'latest' ? 'active' : ''}}" bindtap="onFilterTap" data-filter="latest">最新</view>
+        <view class="filter-item {{currentFilter === 'hot' ? 'active' : ''}}" bindtap="onFilterTap" data-filter="hot">最热</view>
+      </view>
+    </view>
+
+    <!-- 内容列表 -->
+    <view class="content-list">
+      <block wx:for="{{contentList}}" wx:key="id">
+        <view class="content-item card" bindtap="onContentTap" data-id="{{item.id}}">
+          <!-- 用户信息 -->
+          <view class="user-info">
+            <image class="user-avatar avatar" src="{{item.userAvatar}}" mode="aspectFill" />
+            <view class="user-details">
+              <view class="user-name">{{item.userName}}</view>
+              <view class="post-time text-light">{{item.createTime}}</view>
+            </view>
+          </view>
+
+          <!-- 内容文本 -->
+          <view class="content-text">{{item.content}}</view>
+
+          <!-- 图片列表 -->
+          <view class="content-images" wx:if="{{item.images && item.images.length > 0}}">
+            <block wx:for="{{item.images}}" wx:key="index" wx:for-item="imageUrl">
+              <image class="content-image" src="{{imageUrl}}" mode="aspectFill" bindtap="onImageTap" data-urls="{{item.images}}" data-current="{{imageUrl}}" />
+            </block>
+          </view>
+
+          <!-- 车辆信息 -->
+          <view class="car-info" wx:if="{{item.carInfo}}">
+            <view class="car-brand">{{item.carInfo.brand}} {{item.carInfo.model}}</view>
+            <view class="car-year text-light">{{item.carInfo.year}}年</view>
+          </view>
+
+          <!-- 操作按钮 -->
+          <view class="action-bar">
+            <view class="action-item" bindtap="onLikeTap" data-id="{{item.id}}" data-liked="{{item.isLiked}}">
+              <icon class="action-icon" type="{{item.isLiked ? 'success' : 'circle'}}" size="16" color="{{item.isLiked ? '#2E86AB' : '#999'}}"></icon>
+              <text class="action-text {{item.isLiked ? 'text-primary' : 'text-light'}}">{{item.likeCount}}</text>
+            </view>
+            <view class="action-item" bindtap="onCollectTap" data-id="{{item.id}}" data-collected="{{item.isCollected}}">
+              <icon class="action-icon" type="{{item.isCollected ? 'success' : 'circle'}}" size="16" color="{{item.isCollected ? '#2E86AB' : '#999'}}"></icon>
+              <text class="action-text {{item.isCollected ? 'text-primary' : 'text-light'}}">{{item.collectCount}}</text>
+            </view>
+            <view class="action-item" bindtap="onShareTap" data-id="{{item.id}}">
+              <icon class="action-icon" type="circle" size="16" color="#999"></icon>
+              <text class="action-text text-light">分享</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{hasMore}}">
+      <view class="loading" wx:if="{{loading}}">加载中...</view>
+      <view class="load-more-btn" wx:else bindtap="loadMore">加载更多</view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty" wx:if="{{!contentList.length && !loading}}">
+      <view class="empty-icon">🚗</view>
+      <view class="empty-text">暂无分享内容</view>
+    </view>
+  </view>
+</view> 

@@ -1,0 +1,299 @@
+/**
+ * 全局样式 - 简洁海蓝色主题
+ */
+
+/* 全局变量 */
+page {
+  --primary-color: #2E86AB;
+  --primary-light: #A5D8FF;
+  --primary-dark: #1971A3;
+  --secondary-color: #87CEEB;
+  --background-color: #F8FFFE;
+  --text-color: #333333;
+  --text-light: #666666;
+  --text-lighter: #999999;
+  --border-color: #E5E5E5;
+  --white: #FFFFFF;
+  --shadow: 0 2px 12px rgba(46, 134, 171, 0.1);
+  --radius: 8px;
+  --radius-small: 4px;
+}
+
+/* 基础样式 */
+page {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* 通用容器 */
+.container {
+  padding: 20rpx;
+  min-height: 100vh;
+}
+
+.page-container {
+  padding: 0 20rpx;
+  background-color: var(--background-color);
+}
+
+/* 卡片样式 */
+.card {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 20rpx;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-body {
+  padding: 20rpx;
+}
+
+.card-footer {
+  padding: 20rpx;
+  border-top: 1px solid var(--border-color);
+  background-color: #FAFAFA;
+}
+
+/* 按钮样式 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 40rpx;
+  border-radius: var(--radius);
+  font-size: 28rpx;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2rpx solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-small {
+  padding: 12rpx 24rpx;
+  font-size: 24rpx;
+}
+
+.btn-large {
+  padding: 28rpx 60rpx;
+  font-size: 32rpx;
+}
+
+/* 文本样式 */
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--text-light);
+}
+
+.text-light {
+  color: var(--text-lighter);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* 标题样式 */
+.title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 20rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 16rpx;
+}
+
+/* 布局样式 */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-around {
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+/* 间距样式 */
+.mb-10 {
+  margin-bottom: 10rpx;
+}
+
+.mb-20 {
+  margin-bottom: 20rpx;
+}
+
+.mb-30 {
+  margin-bottom: 30rpx;
+}
+
+.mt-10 {
+  margin-top: 10rpx;
+}
+
+.mt-20 {
+  margin-top: 20rpx;
+}
+
+.mt-30 {
+  margin-top: 30rpx;
+}
+
+.p-10 {
+  padding: 10rpx;
+}
+
+.p-20 {
+  padding: 20rpx;
+}
+
+.p-30 {
+  padding: 30rpx;
+}
+
+/* 头像样式 */
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar-large {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.avatar-small {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+/* 图片样式 */
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-small);
+}
+
+.image-cover {
+  object-fit: cover;
+}
+
+/* 列表样式 */
+.list-item {
+  padding: 20rpx;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--white);
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item:hover {
+  background-color: #F5F5F5;
+}
+
+/* 标签样式 */
+.tag {
+  display: inline-block;
+  padding: 8rpx 16rpx;
+  font-size: 22rpx;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border-radius: var(--radius-small);
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+/* 加载样式 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx;
+  color: var(--text-lighter);
+}
+
+/* 空状态样式 */
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80rpx 40rpx;
+  color: var(--text-lighter);
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 28rpx;
+} 

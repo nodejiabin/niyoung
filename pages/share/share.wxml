@@ -1,0 +1,162 @@
+<!--pages/share/share.wxml-->
+<view class="page-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <view class="page-title">分享我的爱车</view>
+    <view class="page-subtitle">记录美好的车生活</view>
+  </view>
+
+  <!-- 分享表单 -->
+  <form bindsubmit="onSubmit" bindreset="onReset">
+    <!-- 图片上传区域 -->
+    <view class="upload-section card">
+      <view class="section-title">
+        <text class="title-text">添加照片</text>
+        <text class="title-desc">最多可上传9张照片</text>
+      </view>
+      
+      <view class="image-upload-container">
+        <!-- 已上传的图片 -->
+        <block wx:for="{{imageList}}" wx:key="index">
+          <view class="image-item">
+            <image class="uploaded-image" src="{{item}}" mode="aspectFill" bindtap="onPreviewImage" data-index="{{index}}" />
+            <view class="image-delete" bindtap="onDeleteImage" data-index="{{index}}">
+              <icon type="clear" size="16" color="#fff"></icon>
+            </view>
+          </view>
+        </block>
+        
+        <!-- 上传按钮 -->
+        <view class="upload-btn" wx:if="{{imageList.length < 9}}" bindtap="onChooseImage">
+          <icon type="plus" size="24" color="#999"></icon>
+          <text class="upload-text">添加照片</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 内容输入区域 -->
+    <view class="content-section card">
+      <view class="section-title">
+        <text class="title-text">分享内容</text>
+        <text class="title-desc">说说你的爱车故事</text>
+      </view>
+      
+      <textarea 
+        class="content-textarea" 
+        placeholder="分享你的爱车故事，驾驶体验，或者有趣的经历..."
+        value="{{content}}"
+        bindinput="onContentInput"
+        maxlength="500"
+        show-confirm-bar="{{false}}"
+        auto-height
+      ></textarea>
+      
+      <view class="content-counter">
+        <text class="counter-text">{{content.length}}/500</text>
+      </view>
+    </view>
+
+    <!-- 车辆信息区域 -->
+    <view class="car-info-section card">
+      <view class="section-title">
+        <text class="title-text">车辆信息</text>
+        <text class="title-desc">选填，让大家更了解你的爱车</text>
+      </view>
+      
+      <view class="car-form">
+        <!-- 品牌选择 -->
+        <view class="form-item">
+          <text class="form-label">品牌</text>
+          <picker class="form-picker" mode="selector" range="{{carBrands}}" value="{{brandIndex}}" bindchange="onBrandChange">
+            <view class="picker-content">
+              <text class="picker-text">{{carBrands[brandIndex] || '请选择品牌'}}</text>
+              <icon type="arrow" size="16" color="#999"></icon>
+            </view>
+          </picker>
+        </view>
+        
+        <!-- 型号输入 -->
+        <view class="form-item">
+          <text class="form-label">型号</text>
+          <input 
+            class="form-input" 
+            placeholder="请输入车辆型号"
+            value="{{carModel}}"
+            bindinput="onCarModelInput"
+          />
+        </view>
+        
+        <!-- 年份选择 -->
+        <view class="form-item">
+          <text class="form-label">年份</text>
+          <picker class="form-picker" mode="date" fields="year" start="2000" end="2024" value="{{carYear}}" bindchange="onYearChange">
+            <view class="picker-content">
+              <text class="picker-text">{{carYear || '请选择年份'}}</text>
+              <icon type="arrow" size="16" color="#999"></icon>
+            </view>
+          </picker>
+        </view>
+        
+        <!-- 颜色输入 -->
+        <view class="form-item">
+          <text class="form-label">颜色</text>
+          <input 
+            class="form-input" 
+            placeholder="请输入车辆颜色"
+            value="{{carColor}}"
+            bindinput="onCarColorInput"
+          />
+        </view>
+      </view>
+    </view>
+
+    <!-- 位置信息区域 -->
+    <view class="location-section card">
+      <view class="section-title">
+        <text class="title-text">位置信息</text>
+        <text class="title-desc">选填，分享你的位置</text>
+      </view>
+      
+      <view class="location-item" bindtap="onChooseLocation">
+        <icon type="location" size="20" color="#2E86AB"></icon>
+        <text class="location-text">{{location || '点击选择位置'}}</text>
+        <icon type="arrow" size="16" color="#999"></icon>
+      </view>
+    </view>
+
+    <!-- 隐私设置 -->
+    <view class="privacy-section card">
+      <view class="section-title">
+        <text class="title-text">隐私设置</text>
+      </view>
+      
+      <view class="privacy-item">
+        <text class="privacy-label">允许其他用户评论</text>
+        <switch class="privacy-switch" checked="{{allowComment}}" bindchange="onCommentChange" color="#2E86AB"></switch>
+      </view>
+      
+      <view class="privacy-item">
+        <text class="privacy-label">允许其他用户分享</text>
+        <switch class="privacy-switch" checked="{{allowShare}}" bindchange="onShareChange" color="#2E86AB"></switch>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <button class="submit-btn btn btn-primary btn-large" formType="submit" disabled="{{submitting}}">
+        {{submitting ? '发布中...' : '发布分享'}}
+      </button>
+      <button class="reset-btn btn btn-outline" formType="reset" disabled="{{submitting}}">
+        重置
+      </button>
+    </view>
+  </form>
+</view>
+
+<!-- 加载遮罩 -->
+<view class="loading-mask" wx:if="{{submitting}}">
+  <view class="loading-content">
+    <icon type="loading" size="32" color="#2E86AB"></icon>
+    <text class="loading-text">正在发布...</text>
+  </view>
+</view> 

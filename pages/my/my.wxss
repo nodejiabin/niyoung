@@ -1,0 +1,387 @@
+/* pages/my/my.wxss */
+
+/* 用户信息区域 */
+.user-section {
+  margin-bottom: 20rpx;
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.user-avatar {
+  margin-right: 20rpx;
+  border: 4rpx solid var(--primary-light);
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 8rpx;
+}
+
+.user-desc {
+  font-size: 24rpx;
+}
+
+.user-stats {
+  display: flex;
+  gap: 30rpx;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 4rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+/* 未登录状态 */
+.login-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 40rpx;
+  text-align: center;
+}
+
+.login-icon {
+  margin-bottom: 20rpx;
+  opacity: 0.6;
+}
+
+.login-text {
+  font-size: 28rpx;
+  color: var(--text-light);
+  margin-bottom: 30rpx;
+}
+
+.login-btn {
+  width: 300rpx;
+}
+
+/* 区块头部 */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.section-action {
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  font-size: 24rpx;
+}
+
+.action-text {
+  margin-left: 8rpx;
+}
+
+/* 我的爱车区域 */
+.car-section {
+  margin-bottom: 20rpx;
+}
+
+.car-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.car-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background-color: var(--background-color);
+  border-radius: var(--radius);
+  border: 2rpx solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.car-item:hover {
+  border-color: var(--primary-color);
+  background-color: var(--white);
+  transform: translateY(-2rpx);
+}
+
+.car-image {
+  width: 120rpx;
+  height: 80rpx;
+  border-radius: var(--radius-small);
+  margin-right: 20rpx;
+  object-fit: cover;
+}
+
+.car-details {
+  flex: 1;
+}
+
+.car-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 8rpx;
+}
+
+.car-year {
+  font-size: 24rpx;
+  margin-bottom: 4rpx;
+}
+
+.car-mileage {
+  font-size: 24rpx;
+}
+
+.car-actions {
+  display: flex;
+  align-items: center;
+  padding: 10rpx;
+}
+
+/* 空车辆状态 */
+.empty-car {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 40rpx;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: var(--text-light);
+  margin-bottom: 30rpx;
+}
+
+.add-car-btn {
+  width: 200rpx;
+}
+
+/* 功能菜单区域 */
+.menu-section {
+  margin-bottom: 20rpx;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 20rpx;
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:hover {
+  background-color: var(--background-color);
+}
+
+.menu-icon {
+  margin-right: 20rpx;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--text-color);
+}
+
+.menu-badge {
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+  min-width: 32rpx;
+  text-align: center;
+  margin-right: 16rpx;
+}
+
+.menu-arrow {
+  opacity: 0.6;
+}
+
+/* 最近活动区域 */
+.activity-section {
+  margin-bottom: 20rpx;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 16rpx;
+  background-color: var(--background-color);
+  border-radius: var(--radius);
+}
+
+.activity-icon {
+  margin-right: 16rpx;
+  margin-top: 4rpx;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-text {
+  font-size: 26rpx;
+  color: var(--text-color);
+  margin-bottom: 8rpx;
+  line-height: 1.4;
+}
+
+.activity-time {
+  font-size: 22rpx;
+}
+
+/* 底部区域 */
+.footer-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40rpx 20rpx;
+  margin-top: 40rpx;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 20rpx;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.footer-item:hover {
+  background-color: var(--background-color);
+}
+
+.footer-text {
+  font-size: 26rpx;
+  color: var(--text-light);
+}
+
+.logout-text {
+  color: #E74C3C;
+}
+
+/* 响应式设计 */
+@media (max-width: 750rpx) {
+  .user-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 20rpx;
+  }
+  
+  .user-avatar {
+    margin-right: 0;
+  }
+  
+  .user-stats {
+    justify-content: center;
+  }
+  
+  .car-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 16rpx;
+  }
+  
+  .car-image {
+    margin-right: 0;
+    width: 200rpx;
+    height: 120rpx;
+  }
+  
+  .car-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600rpx) {
+  .user-stats {
+    gap: 20rpx;
+  }
+  
+  .stat-number {
+    font-size: 24rpx;
+  }
+  
+  .stat-label {
+    font-size: 20rpx;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10rpx;
+  }
+  
+  .section-title {
+    font-size: 28rpx;
+  }
+  
+  .menu-item {
+    padding: 20rpx 16rpx;
+  }
+  
+  .menu-text {
+    font-size: 26rpx;
+  }
+  
+  .footer-section {
+    flex-direction: column;
+    gap: 20rpx;
+  }
+  
+  .footer-item {
+    width: 100%;
+    justify-content: center;
+  }
+} 
