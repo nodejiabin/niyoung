@@ -61,37 +61,22 @@ Page({
 
   // 加载轮播图
   loadBanners: function () {
-    // 使用真实的汽车轮播图数据
+    // 生成轮播图数据，使用占位图片
     const banners = [
       { 
         id: 1, 
-        image: 'https://images.unsplash.com/photo-1542282088-fe8426682b8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-        title: '豪华轿车体验',
-        subtitle: '感受奢华与性能的完美结合'
+        image: placeholder.getBannerPlaceholder(1),
+        title: '爱车分享社区' 
       },
       { 
         id: 2, 
-        image: 'https://images.unsplash.com/photo-1549927681-6a5e0b8e0cc4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-        title: '电动未来',
-        subtitle: '探索清洁能源的无限可能'
+        image: placeholder.getBannerPlaceholder(2),
+        title: '发现更多精彩' 
       },
       { 
         id: 3, 
-        image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-        title: 'SUV越野',
-        subtitle: '征服每一个未知的道路'
-      },
-      { 
-        id: 4, 
-        image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-        title: '跑车激情',
-        subtitle: '速度与激情的完美诠释'
-      },
-      { 
-        id: 5, 
-        image: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-        title: '经典复古',
-        subtitle: '时光沉淀的经典魅力'
+        image: placeholder.getBannerPlaceholder(3),
+        title: '分享你的爱车' 
       }
     ]
     this.setData({ banners })
@@ -547,30 +532,5 @@ Page({
       title: '爱车分享 - 分享你的爱车故事',
       imageUrl: '/images/share-cover.jpg'
     }
-  },
-
-  // 跳转到测试页面
-  goToTest: function () {
-    wx.navigateTo({
-      url: '/pages/test/test'
-    })
-  },
-
-  // 轮播图点击事件
-  onBannerTap: function(e) {
-    const { id, title } = e.currentTarget.dataset;
-    console.log('轮播图点击:', { id, title });
-    
-    // 显示点击反馈
-    wx.showToast({
-      title: `查看${title}`,
-      icon: 'none',
-      duration: 1500
-    });
-    
-    // 这里可以根据需要跳转到详情页面
-    // wx.navigateTo({
-    //   url: `/pages/car-detail/car-detail?id=${id}`
-    // });
   }
 }) 

@@ -1,0 +1,75 @@
+<!--测试页面-->
+<view class="container">
+  <view class="header">
+    <text class="title">登录功能测试</text>
+  </view>
+  
+  <!-- 登录状态显示 -->
+  <view class="status-section">
+    <view class="status-item">
+      <text class="label">登录状态：</text>
+      <text class="value {{hasLogin ? 'success' : 'error'}}">
+        {{hasLogin ? '已登录' : '未登录'}}
+      </text>
+    </view>
+    
+    <view class="status-item" wx:if="{{hasLogin && userInfo}}">
+      <text class="label">用户昵称：</text>
+      <text class="value">{{userInfo.nickName}}</text>
+    </view>
+    
+    <view class="status-item" wx:if="{{hasLogin}}">
+      <text class="label">分享数：</text>
+      <text class="value">{{userStats.shareCount}}</text>
+    </view>
+    
+    <view class="status-item" wx:if="{{hasLogin}}">
+      <text class="label">点赞数：</text>
+      <text class="value">{{userStats.likeCount}}</text>
+    </view>
+  </view>
+  
+  <!-- 操作按钮 -->
+  <view class="action-section">
+    <button 
+      class="btn primary" 
+      wx:if="{{!hasLogin}}" 
+      bind:tap="goToLogin"
+    >
+      去登录
+    </button>
+    
+    <button 
+      class="btn secondary" 
+      wx:if="{{hasLogin}}" 
+      bind:tap="testLogout"
+    >
+      退出登录
+    </button>
+    
+    <button 
+      class="btn" 
+      bind:tap="refreshStatus"
+    >
+      刷新状态
+    </button>
+    
+    <button 
+      class="btn" 
+      bind:tap="testToast"
+    >
+      测试提示
+    </button>
+  </view>
+  
+  <!-- 日志显示 -->
+  <view class="log-section">
+    <text class="log-title">操作日志：</text>
+    <scroll-view class="log-container" scroll-y>
+      <view class="log-item" wx:for="{{logs}}" wx:key="index">
+        <text class="log-time">{{item.time}}</text>
+        <text class="log-content">{{item.content}}</text>
+      </view>
+    </scroll-view>
+  </view>
+</view> 

@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="header">
+    <text class="title">{{message}}</text>
+  </view>
+  
+  <view class="content">
+    <text class="subtitle">测试页面</text>
+    <button class="test-btn" bindtap="onTap">点击测试</button>
+  </view>
+  
+  <view class="list">
+    <view class="list-item" wx:for="{{testData}}" wx:key="id">
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+</view> 

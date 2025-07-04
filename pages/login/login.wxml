@@ -1,2 +1,163 @@
 <!--pages/login/login.wxml-->
-<text>pages/login/login.wxml</text>
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <view class="logo">
+      <image src="/images/logo.png" class="logo-image" mode="aspectFit"></image>
+    </view>
+    <view class="title">爱车分享</view>
+    <view class="subtitle">分享你的爱车故事</view>
+  </view>
+
+  <!-- 登录主体区域 -->
+  <view class="login-main">
+    
+    <!-- 用户协议同意 -->
+    <view class="agreement-section">
+      <view class="agreement-checkbox">
+        <checkbox-group bindchange="onAgreementChange">
+          <label class="agreement-label">
+            <checkbox value="agree" checked="{{agreedToTerms}}" />
+            <text class="agreement-text">
+              我已阅读并同意
+              <text class="link" bindtap="onViewAgreement">《用户协议》</text>
+              和
+              <text class="link" bindtap="onViewPrivacy">《隐私政策》</text>
+            </text>
+          </label>
+        </checkbox-group>
+      </view>
+    </view>
+
+    <!-- 微信登录区域 -->
+    <view class="login-section" wx:if="{{agreedToTerms}}">
+      
+      <!-- 微信登录按钮 -->
+      <view class="login-btn-container" wx:if="{{!hasUserInfo && !showUserProfile}}">
+        <button 
+          class="login-btn wechat-btn"
+          bindtap="onWechatLogin"
+          disabled="{{logging}}"
+        >
+          <text class="btn-icon">🔐</text>
+          <text class="btn-text">{{logging ? '登录中...' : '微信登录'}}</text>
+        </button>
+      </view>
+
+      <!-- 用户信息填写表单 -->
+      <view class="user-profile-form" wx:if="{{showUserProfile}}">
+        <view class="form-title">完善个人信息</view>
+        
+        <!-- 头像选择 -->
+        <view class="avatar-section">
+          <text class="form-label">头像</text>
+          <button 
+            class="avatar-btn" 
+            open-type="chooseAvatar" 
+            bindchooseavatar="onChooseAvatar"
+          >
+            <image class="avatar-preview" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+            <text class="avatar-tip">点击选择头像</text>
+          </button>
+        </view>
+
+        <!-- 昵称输入 -->
+        <view class="nickname-section">
+          <text class="form-label">昵称</text>
+          <input 
+            class="nickname-input"
+            type="nickname"
+            placeholder="请输入昵称"
+            value="{{userInfo.nickName}}"
+            bindinput="onNicknameInput"
+            maxlength="20"
+          />
+        </view>
+
+        <!-- 完成按钮 -->
+        <button 
+          class="complete-btn"
+          bindtap="onCompleteUserProfile"
+          disabled="{{!userInfo.nickName}}"
+        >
+          完成设置
+        </button>
+      </view>
+
+      <!-- 用户信息展示 -->
+      <view class="user-info-display" wx:if="{{hasUserInfo && !showUserProfile}}">
+        <view class="user-card">
+          <image class="user-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+          <view class="user-details">
+            <text class="user-name">{{userInfo.nickName}}</text>
+            <text class="user-status">已获取用户信息</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 手机号授权区域 -->
+      <view class="phone-section" wx:if="{{hasUserInfo && !showUserProfile}}">
+        <view class="section-title">手机号授权（可选）</view>
+        <view class="phone-desc">授权手机号可以获得更好的服务体验</view>
+        
+        <view class="phone-buttons">
+          <button 
+            class="phone-btn get-phone-btn"
+            open-type="getPhoneNumber"
+            bindgetphonenumber="onGetPhoneNumber"
+            wx:if="{{!hasPhoneNumber}}"
+          >
+            <text class="btn-icon">📱</text>
+            <text class="btn-text">获取手机号</text>
+          </button>
+          
+          <button 
+            class="phone-btn skip-phone-btn"
+            bindtap="onSkipPhoneNumber"
+            wx:if="{{!hasPhoneNumber}}"
+          >
+            <text class="btn-text">跳过</text>
+          </button>
+        </view>
+
+        <!-- 手机号显示 -->
+        <view class="phone-display" wx:if="{{hasPhoneNumber}}">
+          <text class="phone-number">{{phoneNumber}}</text>
+          <text class="phone-status">✓ 已获取手机号</text>
+        </view>
+      </view>
+
+      <!-- 完成登录按钮 -->
+      <view class="complete-login-section" wx:if="{{hasUserInfo && !showUserProfile}}">
+        <button 
+          class="complete-login-btn"
+          bindtap="completeLogin"
+          disabled="{{logging}}"
+        >
+          <text class="btn-icon">🚀</text>
+          <text class="btn-text">{{logging ? '登录中...' : '完成登录'}}</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 未同意协议提示 -->
+    <view class="agreement-tip" wx:if="{{!agreedToTerms}}">
+      <text class="tip-icon">ℹ️</text>
+      <text class="tip-text">请先同意用户协议和隐私政策</text>
+    </view>
+
+  </view>
+
+  <!-- 底部区域 -->
+  <view class="footer">
+    <text class="footer-text">登录即表示同意相关条款</text>
+    <text class="footer-text">如有问题，请联系客服</text>
+  </view>
+
+  <!-- 调试工具（开发环境） -->
+  <view class="debug-tools" wx:if="{{true}}">
+    <text class="debug-title">调试工具</text>
+    <button class="debug-btn" bindtap="debugAgreementStatus">检查协议状态</button>
+    <button class="debug-btn" bindtap="forceSetAgreement">强制同意协议</button>
+  </view>
+</view>

@@ -15,17 +15,9 @@
 
   <!-- 轮播图 -->
   <view class="banner-container" wx:if="{{banners.length > 0}}">
-    <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{4000}}" duration="{{500}}">
+    <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}">
       <swiper-item wx:for="{{banners}}" wx:key="id">
-        <view class="banner-item" bindtap="onBannerTap" data-id="{{item.id}}" data-title="{{item.title}}">
-          <image class="banner-image" src="{{item.image}}" mode="aspectFill" />
-          <view class="banner-overlay">
-            <view class="banner-content">
-              <text class="banner-title">{{item.title}}</text>
-              <text class="banner-subtitle">{{item.subtitle}}</text>
-            </view>
-          </view>
-        </view>
+        <image class="banner-image" src="{{item.image}}" mode="aspectFill" />
       </swiper-item>
     </swiper>
   </view>
